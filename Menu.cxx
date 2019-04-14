@@ -223,13 +223,14 @@ void visualizarBaralhos() {
 
 
 //Conjunto de Cartas Viloes e SuperViloes;
+	//OBS: COLOCAR ID DOS VILOES COMECANDO DE 0, EXEMPLO: 0,1,2...
 	Carta galactus;
-	Carta thanos;
+	Carta thanos; //EH SUPER VILAO, TEM Q DEFINIR ATRIBUTO especial = true;
 	Carta loki;
 	Carta magneto;
-	Carta apocalipse;
+	Carta apocalipse; //EH SUPER VILAO, TEM Q DEFINIR ATRIBUTO especial = true;
 	Carta drDestino;
-	Carta ultron;
+	Carta ultron; //EH SUPER VILAO, TEM Q DEFINIR ATRIBUTO especial = true;
 	Carta mephisto;
 	Carta kang;
 	Carta reiDoCrime;
@@ -239,6 +240,7 @@ void visualizarBaralhos() {
 	Carta coringa;
 	Carta charada;
 
+//Array de Cartas de Herois.
 	Carta herois[15];
 	herois[0] = homemAranha;
 	herois[1] = homemDeFerro;
@@ -256,9 +258,22 @@ void visualizarBaralhos() {
 	herois[13] = vespa;
 	herois[14] = mulherMaravilha;
 
-	cout << homemAranha.nome << endl;
-	cout << homemAranha.forcaBruta << endl;
-	cout << homemAranha.habilidade << endl;
+	Carta viloes[15];
+	viloes[0] = galactus;
+	viloes[1] = thanos;
+	viloes[2] = loki;
+	viloes[3] = magneto;
+	viloes[4] = apocalipse;
+	viloes[5] = drDestino;
+	viloes[6] = ultron;
+	viloes[7] = mephisto;
+	viloes[8] = kang;
+	viloes[9] = reiDoCrime;
+	viloes[10] = duendeVerde;
+	viloes[11] = caveiraVermelha;
+	viloes[12] = venom;
+	viloes[13] = coringa;
+	viloes[14] = charada;
 }
 
 
