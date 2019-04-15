@@ -51,6 +51,21 @@ void mostraRegras() {
 	cout << "O jogador e a máquina irão alternar turnos \no jogador puxa aleatoriamente 3 cartas das 15 do seu baralho\nescolhe 1 para colocar em combate\no mesmo serve para a máquina\nas outras 2 nao escolhidas retornam\nEm cada turno escolha o atributo para a batalha\nMarca 1 ponto quem tiver maior atributo\nAs duas cartas que batalharam são removidas do jogo\nQuando acabarem as cartas quem tiver mais ponto vence.\n";
 }
 
+void exibeCarta(struct Carta carta){
+	//Método responsável por exibir uma carta
+
+	if (carta.especial){
+		cout << "CARTA ESPECIAL!";
+	}
+
+	cout <<  carta.nome; 
+	cout << "Vitalidade: " + carta.vitalidade;
+	cout << "Inteligencia: " + carta.inteligencia;
+	cout << "Força: " + carta.forcaBruta;
+	cout << "Velocidade: " + carta.velocidade;
+	cout << "Habilidade: " + carta.habilidade;
+
+}
 
 
 void visualizarBaralhos() {
@@ -411,6 +426,19 @@ void visualizarBaralhos() {
 	viloes[12] = venom;
 	viloes[13] = coringa;
 	viloes[14] = mistica;
+
+	//Exibindo herois
+	cout << "HEROIS";
+	for (int i = 0 ; i < 15 ; i++){
+		exibeCarta(herois[i]);
+	}
+
+	//Exibindo vilões
+	cout << "VILOES";
+	for (int i = 0 ; i < 15 ; i++){
+		exibeCarta(viloes[i]);
+	}
+
 }
 
 
