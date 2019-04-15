@@ -458,13 +458,17 @@ void escolherBaralho()
 	cout << "\nDigite qual baralho que jogar: \n1- Herois\n2- Viloes\n";
 	cin >> opcao;
 
-	if (opcao == 1)
+	switch (opcao)
 	{
+	case 1:
 		embaralhaDeck(herois);
-	}
-	else
-	{
+		break;
+	case 2:
 		embaralhaDeck(viloes);
+		break;
+	default:
+		cout << "Opcao invalida";
+		break;
 	}
 }
 void jogar()
