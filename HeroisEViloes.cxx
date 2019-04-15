@@ -18,7 +18,7 @@ struct Carta
 	int forcaBruta;
 	int velocidade;
 	int habilidade;
-	bool especial;
+	bool especial = false;
 };
 
 Carta herois[15];
@@ -26,7 +26,7 @@ Carta viloes[15];
 
 void menuInicio()
 {
-	cout << "Bem vindo ao jogo Hérois x Vilões!" << '\n';
+	cout << "Bem vindo ao jogo Hérois x Vilões!";
 	cout << "Menu: \n1) Jogar\n2) Visualizar baralhos\n3) Regras\n4) Sair" << '\n';
 }
 
@@ -380,49 +380,52 @@ void iniciaBaralhos()
 	viloes[14] = mistica;
 }
 
-void exibeCarta(Carta carta)
-{
-	//Método responsável por exibir uma carta
-
-	if (carta.especial)
-	{
-		cout << "\nCARTA ESPECIAL!\n";
-	}
-	cout << carta.nome;
-	cout << "Vitalidade: " + carta.vitalidade;
-	cout << "Inteligencia: " + carta.inteligencia;
-	cout << "Força: " + carta.forcaBruta;
-	cout << "Velocidade: " + carta.velocidade;
-	cout << "Habilidade: " + carta.habilidade;
-}
-
 void visualizarBaralhos()
 {
 	int opcao;
-	cout << "Deseja visualizar qual baralho:\n";
-	cout << "1)Baralho de Herois\n2)Baralho de Viloes\n";
-	cout << "Digite sua opcao: ";
+	cout << "\nDeseja visualizar qual baralho:\n";
+	cout << "\n1)Baralho de Herois\n2)Baralho de Viloes\n";
+	cout << "\nDigite sua opcao: ";
 	cin >> opcao;
 	switch (opcao)
 	{
 	case 1:
-		cout << "\nHEROIS\n";
+		cout << "\nHEROIS";
 		for (int i = 0; i < 15; i++)
 		{
-			exibeCarta(herois[i]);
+			if (herois[i].especial)
+			{
+				cout << "\nSUPER-HEROI";
+			}
+			cout << endl << herois[i].nome << endl;
+			cout << herois[i].vitalidade << endl;
+			cout << herois[i].inteligencia << endl;
+			cout << herois[i].forcaBruta << endl;
+			cout << herois[i].velocidade << endl;
+			cout << herois[i].habilidade << endl;
 		}
 		break;
 	case 2:
-		//Exibindo vilões
 		cout << "\nVILOES\n";
 		for (int i = 0; i < 15; i++)
 		{
-			exibeCarta(viloes[i]);
+			if (viloes[i].especial)
+			{
+				cout << "\nSUPER-VILAO";
+			}
+			cout << endl << viloes[i].nome << endl;
+			cout << viloes[i].vitalidade << endl;
+			cout << viloes[i].inteligencia << endl;
+			cout << viloes[i].forcaBruta << endl;
+			cout << viloes[i].velocidade << endl;
+			cout << viloes[i].habilidade << endl;
 		}
-		break;
+	
+	
 	default:
 		cout << "Opcao invalida.";
-	}
+		break;
+	}	
 }
 
 bool ehPar(int i)
@@ -452,7 +455,7 @@ void embaralhaDeck(Carta deck[])
 void escolherBaralho()
 {
 	int opcao;
-	cout << "Digite qual baralho que jogar: \n1- Herois\n2- Viloes\n";
+	cout << "\nDigite qual baralho que jogar: \n1- Herois\n2- Viloes\n";
 	cin >> opcao;
 
 	if (opcao == 1)
@@ -476,7 +479,7 @@ int main(int argc, char **argv)
 	menuInicio();
 
 	int opcao;
-	cout << "Digite aqui sua opcao: ";
+	cout << "\nDigite aqui sua opcao: ";
 	cin >> opcao;
 	switch (opcao)
 	{
