@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <iostream>
 #include <cstring>
@@ -27,7 +25,7 @@ Carta viloes[15];
 void menuInicio()
 {
 	cout << "Bem vindo ao jogo Hérois x Vilões!";
-	cout << "Menu: \n1) Jogar\n2) Visualizar baralhos\n3) Regras\n4) Sair" << '\n';
+	cout << "\nMenu: \n1) Jogar\n2) Visualizar baralhos\n3) Regras\n4) Sair\n";
 }
 
 void mostraRegras()
@@ -204,7 +202,7 @@ void iniciaBaralhos()
 	galactus.forcaBruta = 23;
 	galactus.especial = true;
 
-	Carta thanos; //EH SUPER VILAO, TEM Q DEFINIR ATRIBUTO especial = true;
+	Carta thanos;
 	// Atributos do Thanos
 	thanos.nome = "Thanos";
 	thanos.ID = 1;
@@ -390,42 +388,41 @@ void visualizarBaralhos()
 	switch (opcao)
 	{
 	case 1:
-		cout << "\nHEROIS";
 		for (int i = 0; i < 15; i++)
 		{
 			if (herois[i].especial)
 			{
 				cout << "\nSUPER-HEROI";
 			}
-			cout << endl << herois[i].nome << endl;
-			cout << herois[i].vitalidade << endl;
-			cout << herois[i].inteligencia << endl;
-			cout << herois[i].forcaBruta << endl;
-			cout << herois[i].velocidade << endl;
-			cout << herois[i].habilidade << endl;
+			cout << endl
+				 << herois[i].nome << endl;
+			cout << "Vitalidade: " << herois[i].vitalidade << endl;
+			cout << "Inteligencia: " << herois[i].inteligencia << endl;
+			cout << "Forca Bruta: " << herois[i].forcaBruta << endl;
+			cout << "Velocidade: " << herois[i].velocidade << endl;
+			cout << "Habilidade: " << herois[i].habilidade << endl;
 		}
 		break;
 	case 2:
-		cout << "\nVILOES\n";
 		for (int i = 0; i < 15; i++)
 		{
 			if (viloes[i].especial)
 			{
 				cout << "\nSUPER-VILAO";
 			}
-			cout << endl << viloes[i].nome << endl;
-			cout << viloes[i].vitalidade << endl;
-			cout << viloes[i].inteligencia << endl;
-			cout << viloes[i].forcaBruta << endl;
-			cout << viloes[i].velocidade << endl;
-			cout << viloes[i].habilidade << endl;
+			cout << endl
+				 << viloes[i].nome << endl;
+			cout << "Vitalidade: " << viloes[i].vitalidade << endl;
+			cout << "Inteligencia: " << viloes[i].inteligencia << endl;
+			cout << "Forca Bruta: " << viloes[i].forcaBruta << endl;
+			cout << "Velocidade: " << viloes[i].velocidade << endl;
+			cout << "Habilidade: " << viloes[i].habilidade << endl;
 		}
-	
-	
+
 	default:
 		cout << "Opcao invalida.";
 		break;
-	}	
+	}
 }
 
 bool ehPar(int i)
@@ -444,7 +441,7 @@ void embaralhaDeck(Carta deck[])
 {
 	for (int i = 0; i < 15; i++)
 	{
-		int random = rand() % 15;
+		int random = rand() % 14;
 
 		Carta temp = deck[i];
 		deck[i] = deck[random];
@@ -474,7 +471,6 @@ void escolherBaralho()
 void jogar()
 {
 	escolherBaralho();
-	//...continuar algoritmo de jogar.
 }
 
 int main(int argc, char **argv)
