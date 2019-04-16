@@ -21,6 +21,9 @@ struct Carta
 
 Carta herois[15];
 Carta viloes[15];
+int turno = 0;
+int pontosJogador = 0;
+int pontosMaquina = 0;
 
 void menuInicio()
 {
@@ -418,7 +421,7 @@ void visualizarBaralhos()
 			cout << "Velocidade: " << viloes[i].velocidade << endl;
 			cout << "Habilidade: " << viloes[i].habilidade << endl;
 		}
-
+		break;
 	default:
 		cout << "Opcao invalida.";
 		break;
@@ -436,7 +439,7 @@ bool ehPar(int i)
 		return false;
 	}
 }
-//metodo para embaralhar o deck,testar!
+//Metodo para embaralhar o deck, ele usa um inteiro aleatorio para trocar as posicoes no array de cartas
 void embaralhaDeck(Carta deck[])
 {
 	for (int i = 0; i < 15; i++)
@@ -449,7 +452,7 @@ void embaralhaDeck(Carta deck[])
 	}
 }
 
-void escolherBaralho()
+Carta *escolherBaralho()
 {
 	int opcao;
 	cout << "\nDigite qual baralho que jogar: \n1- Herois\n2- Viloes\n";
@@ -468,9 +471,138 @@ void escolherBaralho()
 		break;
 	}
 }
+
+//metodo para o jogador escolher a carta
+Carta escolheCarta(Carta deck[])
+{
+	Carta escolhida;
+	Carta cartasPuxadas[3];
+	int escolhaAleatoria = rand() % 14;
+
+	for (int i = 0; i < 3; i++)
+	{
+		cartasPuxadas[i] = deck[escolhaAleatoria];
+		escolhaAleatoria++;
+	}
+	for (int j = 0; j < 3; j++)
+	{
+		cout << "\nCarta Numero " << j << endl;
+		if (cartasPuxadas[j].especial)
+		{
+
+			cout << "\nSUPER-HEROI";
+		}
+		cout << endl
+			 << cartasPuxadas[j].nome << endl;
+		cout << "Vitalidade: " << cartasPuxadas[j].vitalidade << endl;
+		cout << "Inteligencia: " << cartasPuxadas[j].inteligencia << endl;
+		cout << "Forca Bruta: " << cartasPuxadas[j].forcaBruta << endl;
+		cout << "Velocidade: " << cartasPuxadas[j].velocidade << endl;
+		cout << "Habilidade: " << cartasPuxadas[j].habilidade << endl;
+	}
+
+	int opcao;
+	cout << "\nDigite aqui qual carta vai ao combate: ";
+	cin >> opcao;
+	switch (opcao)
+	{
+	case 0:
+		escolhida = cartasPuxadas[opcao];
+		break;
+	case 1:
+		escolhida = cartasPuxadas[opcao];
+		break;
+	case 2:
+		escolhida = cartasPuxadas[opcao];
+		break;
+	default:
+		cout << "Opcao invalida.";
+		break;
+	}
+	return escolhida;
+}
+
+//metodo para o jogador escolher o atributo;
+int escolherAtributo(Carta carta)
+{
+	int opcaoAtributo;
+	int atributoEscolhido;
+	cout << "\nAgora escolha qual atributo: ";
+	cin >> opcaoAtributo;
+	switch (opcaoAtributo)
+	{
+	case 1:
+		atributoEscolhido = carta.vitalidade;
+		break;
+	case 2:
+		atributoEscolhido = carta.inteligencia;
+		break;
+	case 3:
+		atributoEscolhido = carta.forcaBruta;
+		break;
+	case 4:
+		atributoEscolhido = carta.velocidade;
+		break;
+	case 5:
+		atributoEscolhido = carta.habilidade;
+		break;
+	default:
+		cout << "Opcao invalida.";
+		break;
+	}
+	return atributoEscolhido;
+}
+
+Carta escolherCartaAleatoriamente(Carta deck[])
+{
+	Carta escolhida;
+	Carta cartasPuxadas[3];
+	int escolhaAleatoria = rand() % 14; //verificar se ta sendo aleatorio msm
+
+	for (int i = 0; i < 3; i++)
+	{
+		cartasPuxadas[i] = deck[escolhaAleatoria];
+		escolhaAleatoria += 1;
+	}
+	escolhida = cartasPuxadas[rand() % 2];
+	return escolhida;
+}
+
+int escolherAtributoAleatoriamente(Carta carta)
+{
+	return 50;
+	//algoritmo para a "maquina" escolher o maior atributo da carta, falta implementar.
+}
+
 void jogar()
 {
-	escolherBaralho();
+	//Falta loop aqui para continuar os turnos ate as condicoes de vitoria serem atingidas.
+
+	int atributoJogador;
+	int atributoMaquina;
+	Carta cartaJogador;
+	Carta cartaMaquina;
+
+	embaralhaDeck(herois);
+	cartaJogador = escolheCarta(herois);
+	atributoJogador = escolherAtributo(cartaJogador);
+
+	embaralhaDeck(viloes);
+	cartaMaquina = escolherCartaAleatoriamente(viloes);
+	atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+
+	if (atributoJogador > atributoMaquina)
+	{
+		pontosJogador += 1;
+	}
+	else
+	{
+		pontosMaquina += 1;
+	}
+	cout << atributoJogador << endl;
+	cout << atributoMaquina << endl;
+	cout << pontosJogador << endl;
+	cout << pontosMaquina << endl;
 }
 
 int main(int argc, char **argv)
@@ -478,6 +610,7 @@ int main(int argc, char **argv)
 	iniciaBaralhos();
 	menuInicio();
 
+	//Falta loop aqui para evitar de o programar ficar "morrendo" qnd seleciona os outros metodos: mostrarRegras(), visualizarBaralhos()...
 	int opcao;
 	cout << "\nDigite aqui sua opcao: ";
 	cin >> opcao;
