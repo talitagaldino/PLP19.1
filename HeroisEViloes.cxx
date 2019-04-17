@@ -555,34 +555,47 @@ int escolherAtributoAleatoriamente(Carta carta) {
 }
 
 void jogar() {
-	//Falta loop aqui para continuar os turnos ate as condicoes de vitoria serem atingidas.
-
+    //Metodo jogar onde o jogo se desenvolve e tem seu desenrolar
+    int pontuacaoVitoria = 10;
+    int pontosJogador = 0;
+    int pontosMaquina = 0;
 	int atributoJogador;
 	int atributoMaquina;
+	int fimDoJogo = 0;
 	Carta cartaJogador;
 	Carta cartaMaquina;
+    do {
+        embaralhaDeck(herois);
+        cartaJogador = escolheCarta(herois);
+        atributoJogador = escolherAtributo(cartaJogador);
 
-	embaralhaDeck(herois);
-	cartaJogador = escolheCarta(herois);
-	atributoJogador = escolherAtributo(cartaJogador);
+        embaralhaDeck(viloes);
+        cartaMaquina = escolherCartaAleatoriamente(viloes);
+        atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
 
-	embaralhaDeck(viloes);
-	cartaMaquina = escolherCartaAleatoriamente(viloes);
-	atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+        cout << "Atributo Jogador: " << atributoJogador << endl;
+        cout << "Atributo Maquina: " << atributoMaquina << endl;
 
-	cout << "Atributo Jogador: " << atributoJogador << endl;
-	cout << "Atributo Maquina: " << atributoMaquina << endl;
+        if (atributoJogador > atributoMaquina) {
+            cout << "Voce venceu a batalha!\n";
+            pontosJogador += 1;
+        } else {
+            cout << "Maquina venceu a batalha!\n";
+            pontosMaquina += 1;
+        }
 
-	if (atributoJogador > atributoMaquina) {
-        cout << "Voce venceu a batalha!\n";
-		pontosJogador += 1;
-	} else {
-	    cout << "Maquina venceu a batalha!\n";
-		pontosMaquina += 1;
-	}
+        cout << "\nMeus Pontos: " << pontosJogador << endl;
+        cout << "Pontos Maquina: "<< pontosMaquina << endl;
 
-	cout << "\nMeus Pontos: " << pontosJogador << endl;
-	cout << "Pontos Maquina: "<< pontosMaquina << endl;
+        // Mostrar quem ganhou ao final do jogo
+        if (pontosJogador >= pontuacaoVitoria) {
+            cout << "O jogo acabou e voce venceu!\n";
+            fimDoJogo = 1;
+        } else if (pontosMaquina >= pontuacaoVitoria) {
+            cout << "O jogo acabou e a maquina venceu!\n";
+            fimDoJogo = 1;
+        }
+    } while (fimDoJogo != 1);
 }
 
 int main(int argc, char **argv) {
@@ -603,6 +616,7 @@ int main(int argc, char **argv) {
             mostraRegras();
             break;
         case 4:
+            cout << "\nObrigado por jogar nosso Super Trunfo !!!\n";
             break;
         default:
             cout << "Opcao invalida!\n";
