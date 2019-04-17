@@ -6,10 +6,9 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
- 
+
 //Definindo o structure Carta e seus atributos.
-struct Carta
-{
+struct Carta {
     int ID;
     string nome;
     int vitalidade;
@@ -19,28 +18,25 @@ struct Carta
     int habilidade;
     bool especial = false;
 };
- 
+
 Carta herois[15];
 Carta viloes[15];
 int turno = 0;
 int pontosJogador = 0;
 int pontosMaquina = 0;
- 
-void menuInicio()
-{
-    cout << "Bem vindo ao jogo Hérois x Vilões!";
+
+void menuInicio() {
+    cout << "\nBem vindo ao jogo Hérois x Vilões!";
     cout << "\nMenu: \n1) Jogar\n2) Visualizar baralhos\n3) Regras\n4) Sair\n";
 }
- 
-void mostraRegras()
-{
+
+void mostraRegras() {
     cout << "\nAs regras do jogo sao as seguintes: \nO jogador e a máquina irão alternar turnos \nO jogador puxa aleatoriamente 3 cartas das 15 do seu baralho\nEscolhe 1 para colocar em combate\nO mesmo serve para a máquina\nAs outras 2 nao escolhidas retornam ao deck\nEm cada turno escolhe um atributo para a batalha\nMarca 1 ponto quem tiver maior atributo\nAs duas cartas que batalharam são removidas do jogo\nQuando acabarem as cartas quem tiver mais ponto vence o jogo.\n";
 }
- 
-void iniciaBaralhos()
-{
+
+void iniciaBaralhos() {
     //Conjunto de Cartas Herois e SuperHerois.
- 
+
     Carta homemAranha;
     //Atributos de Homem Aranha
     homemAranha.nome = "Homem Aranha";
@@ -50,7 +46,7 @@ void iniciaBaralhos()
     homemAranha.inteligencia = 71;
     homemAranha.habilidade = 82;
     homemAranha.forcaBruta = 45;
- 
+
     Carta homemDeFerro;
     //Atributos de Homem de Ferro
     homemDeFerro.especial = true;
@@ -61,7 +57,7 @@ void iniciaBaralhos()
     homemDeFerro.inteligencia = 71;
     homemDeFerro.habilidade = 49;
     homemDeFerro.forcaBruta = 54;
- 
+
     Carta thor;
     //Atributos de Thor;
     thor.especial = true;
@@ -72,7 +68,7 @@ void iniciaBaralhos()
     thor.inteligencia = 18;
     thor.habilidade = 68;
     thor.forcaBruta = 83;
- 
+
     Carta capitaoAmerica;
     //Atributos Capitao America;
     capitaoAmerica.nome = "Capitao America";
@@ -82,7 +78,7 @@ void iniciaBaralhos()
     capitaoAmerica.inteligencia = 38;
     capitaoAmerica.habilidade = 45;
     capitaoAmerica.forcaBruta = 89;
- 
+
     Carta viuvaNegra;
     //Atributos de Viuva Negra;
     viuvaNegra.nome = "Viuva Negra";
@@ -92,7 +88,7 @@ void iniciaBaralhos()
     viuvaNegra.inteligencia = 41;
     viuvaNegra.habilidade = 42;
     viuvaNegra.forcaBruta = 78;
- 
+
     Carta wolverine;
     //Atributos do Wolverine;
     wolverine.nome = "Wolverine";
@@ -102,7 +98,7 @@ void iniciaBaralhos()
     wolverine.inteligencia = 25;
     wolverine.habilidade = 19;
     wolverine.forcaBruta = 83;
- 
+
     Carta maquinaDeCombate;
     //Atributos de Maquina de Combate;
     maquinaDeCombate.nome = "Maquina de Combate";
@@ -112,7 +108,7 @@ void iniciaBaralhos()
     maquinaDeCombate.inteligencia = 32;
     maquinaDeCombate.habilidade = 65;
     maquinaDeCombate.forcaBruta = 61;
- 
+
     Carta homemFormiga;
     //Atributos de Homem Formiga
     homemFormiga.nome = "Homem Formiga";
@@ -122,7 +118,7 @@ void iniciaBaralhos()
     homemFormiga.inteligencia = 48;
     homemFormiga.habilidade = 68;
     homemFormiga.forcaBruta = 37;
- 
+
     Carta capitaMarvel;
     //Atributos da Capita Marvel;
     capitaMarvel.especial = true;
@@ -133,7 +129,7 @@ void iniciaBaralhos()
     capitaMarvel.inteligencia = 28;
     capitaMarvel.habilidade = 62;
     capitaMarvel.forcaBruta = 44;
- 
+
     Carta drEstranho;
     //Atributos de Dr. Estranho
     drEstranho.nome = "Dr. Estranho";
@@ -143,7 +139,7 @@ void iniciaBaralhos()
     drEstranho.inteligencia = 86;
     drEstranho.habilidade = 81;
     drEstranho.forcaBruta = 12;
- 
+
     Carta panteraNegra;
     //Atributo de Pantera Negra
     panteraNegra.nome = "Pantera Negra";
@@ -153,7 +149,7 @@ void iniciaBaralhos()
     panteraNegra.inteligencia = 40;
     panteraNegra.habilidade = 21;
     panteraNegra.forcaBruta = 74;
- 
+
     Carta hulk;
     //Atributos de Hulk
     hulk.nome = "Hulk";
@@ -163,7 +159,7 @@ void iniciaBaralhos()
     hulk.inteligencia = 3;
     hulk.habilidade = 14;
     hulk.forcaBruta = 90;
- 
+
     Carta ciclope;
     //Atributos de Ciclope
     ciclope.nome = "Ciclope";
@@ -173,7 +169,7 @@ void iniciaBaralhos()
     ciclope.inteligencia = 42;
     ciclope.habilidade = 73;
     ciclope.forcaBruta = 39;
- 
+
     Carta mulherInvisivel;
     //Atributos de Mulher Invisivel
     mulherInvisivel.nome = "Mulher Invisivel";
@@ -183,7 +179,7 @@ void iniciaBaralhos()
     mulherInvisivel.inteligencia = 38;
     mulherInvisivel.habilidade = 65;
     mulherInvisivel.forcaBruta = 21;
- 
+
     Carta mulherMaravilha;
     //Atributos de Mulher Maravilha
     mulherMaravilha.nome = "Mulher Maravilha";
@@ -193,7 +189,7 @@ void iniciaBaralhos()
     mulherMaravilha.inteligencia = 30;
     mulherMaravilha.habilidade = 48;
     mulherMaravilha.forcaBruta = 76;
- 
+
     //Conjunto de Cartas Viloes e SuperViloes;
     Carta galactus;
     //Atributos do Galactus
@@ -205,7 +201,7 @@ void iniciaBaralhos()
     galactus.habilidade = 82;
     galactus.forcaBruta = 23;
     galactus.especial = true;
- 
+
     Carta thanos;
     // Atributos do Thanos
     thanos.nome = "Thanos";
@@ -216,7 +212,7 @@ void iniciaBaralhos()
     thanos.habilidade = 86;
     thanos.forcaBruta = 49;
     thanos.especial = true;
- 
+
     Carta loki;
     // Atributos do Loki
     loki.nome = "Loki";
@@ -226,7 +222,7 @@ void iniciaBaralhos()
     loki.inteligencia = 68;
     loki.habilidade = 57;
     loki.forcaBruta = 41;
- 
+
     Carta magneto;
     // Atributos do Magneto
     magneto.nome = "Magneto";
@@ -236,7 +232,7 @@ void iniciaBaralhos()
     magneto.inteligencia = 61;
     magneto.habilidade = 77;
     magneto.forcaBruta = 39;
- 
+
     Carta apocalipse;
     // Atributos do Apocalipse
     apocalipse.nome = "Apocalipse";
@@ -247,7 +243,7 @@ void iniciaBaralhos()
     apocalipse.habilidade = 39;
     apocalipse.forcaBruta = 86;
     apocalipse.especial = true;
- 
+
     Carta drDestino;
     // Atributos do Dr. Destino
     drDestino.nome = "Doutor Destino";
@@ -257,7 +253,7 @@ void iniciaBaralhos()
     drDestino.inteligencia = 74;
     drDestino.habilidade = 80;
     drDestino.forcaBruta = 41;
- 
+
     Carta ultron;
     // Atributos do Ultron
     ultron.nome = "Ultron";
@@ -267,7 +263,7 @@ void iniciaBaralhos()
     ultron.inteligencia = 46;
     ultron.habilidade = 71;
     ultron.forcaBruta = 63;
- 
+
     Carta drOctopus;
     // Atributos do Dr Octopus
     drOctopus.nome = "Doutor Octopus";
@@ -277,7 +273,7 @@ void iniciaBaralhos()
     drOctopus.inteligencia = 62;
     drOctopus.habilidade = 21;
     drOctopus.forcaBruta = 55;
- 
+
     Carta kang;
     // Atributos do Kang
     kang.nome = "Kang";
@@ -287,7 +283,7 @@ void iniciaBaralhos()
     kang.inteligencia = 48;
     kang.habilidade = 71;
     kang.forcaBruta = 41;
- 
+
     Carta reiDoCrime;
     // Atributos do Rei do Crime
     reiDoCrime.nome = "Rei do Crime";
@@ -297,7 +293,7 @@ void iniciaBaralhos()
     reiDoCrime.inteligencia = 46;
     reiDoCrime.habilidade = 12;
     reiDoCrime.forcaBruta = 66;
- 
+
     Carta duendeVerde;
     // Atributos do Doende Verde
     duendeVerde.nome = "Duende Verde";
@@ -307,7 +303,7 @@ void iniciaBaralhos()
     duendeVerde.inteligencia = 58;
     duendeVerde.habilidade = 41;
     duendeVerde.forcaBruta = 32;
- 
+
     Carta caveiraVermelha;
     // Atributos do Caveira Vermelha;
     caveiraVermelha.nome = "Caveira Vermelha";
@@ -317,7 +313,7 @@ void iniciaBaralhos()
     caveiraVermelha.inteligencia = 58;
     caveiraVermelha.habilidade = 11;
     caveiraVermelha.forcaBruta = 66;
- 
+
     Carta venom;
     // Atributos do Venom
     venom.nome = "Venom";
@@ -327,7 +323,7 @@ void iniciaBaralhos()
     venom.inteligencia = 37;
     venom.habilidade = 19;
     venom.forcaBruta = 55;
- 
+
     Carta coringa;
     // Atributos do Coringa
     coringa.nome = "Coringa";
@@ -337,7 +333,7 @@ void iniciaBaralhos()
     coringa.inteligencia = 78;
     coringa.habilidade = 37;
     coringa.forcaBruta = 24;
- 
+
     Carta mistica;
     // Atributos da Mística
     mistica.nome = "Mistica";
@@ -347,7 +343,7 @@ void iniciaBaralhos()
     mistica.inteligencia = 57;
     mistica.habilidade = 61;
     mistica.forcaBruta = 38;
- 
+
     //Array de Cartas de Herois.
     herois[0] = homemAranha;
     herois[1] = homemDeFerro;
@@ -364,7 +360,7 @@ void iniciaBaralhos()
     herois[12] = ciclope;
     herois[13] = mulherInvisivel;
     herois[14] = mulherMaravilha;
- 
+
     viloes[0] = galactus;
     viloes[1] = thanos;
     viloes[2] = loki;
@@ -381,74 +377,61 @@ void iniciaBaralhos()
     viloes[13] = coringa;
     viloes[14] = mistica;
 }
- 
-void visualizarBaralhos()
-{
-    int opcao;
-    cout << "\nDeseja visualizar qual baralho:\n";
-    cout << "\n1)Baralho de Herois\n2)Baralho de Viloes\n";
-    cout << "\nDigite sua opcao: ";
-    cin >> opcao;
-    switch (opcao)
-    {
-    case 1:
-        for (int i = 0; i < 15; i++)
-        {
-            if (herois[i].especial)
-            {
-                cout << "\nSUPER-HEROI";
+
+void visualizarBaralhos() {
+	int opcao;
+	cout << "\nEscolha uma opcao abaixo: \n";
+	cout << "\n1)Baralho de Herois\n2)Baralho de Viloes\n";
+	cout << "\nDigite sua opcao: ";
+	cin >> opcao;
+    switch (opcao) {
+        case 1:
+            for (int i = 0; i < 15; i++) {
+                if (herois[i].especial) {
+                    cout << "\nSUPER-HEROI";
+                }
+                cout << "\nNome: " << herois[i].nome;
+                cout << "\nVitalidade: " << herois[i].vitalidade;
+                cout << "\nInteligencia: " << herois[i].inteligencia;
+                cout << "\nForca Bruta: " << herois[i].forcaBruta;
+                cout << "\nVelocidade: " << herois[i].velocidade;
+                cout << "\nHabilidade: " << herois[i].habilidade;
+                cout << endl;
             }
-            cout << endl
-                 << herois[i].nome << endl;
-            cout << "Vitalidade: " << herois[i].vitalidade << endl;
-            cout << "Inteligencia: " << herois[i].inteligencia << endl;
-            cout << "Forca Bruta: " << herois[i].forcaBruta << endl;
-            cout << "Velocidade: " << herois[i].velocidade << endl;
-            cout << "Habilidade: " << herois[i].habilidade << endl;
-        }
-        break;
-    case 2:
-        for (int i = 0; i < 15; i++)
-        {
-            if (viloes[i].especial)
-            {
-                cout << "\nSUPER-VILAO";
+            break;
+        case 2:
+            for (int i = 0; i < 15; i++) {
+                if (viloes[i].especial)	{
+                    cout << "\nSUPER-VILAO";
+                }
+                cout << "\nNome: " << viloes[i].nome;
+                cout << "\nVitalidade: " << viloes[i].vitalidade;
+                cout << "\nInteligencia: " << viloes[i].inteligencia;
+                cout << "\nForca Bruta: " << viloes[i].forcaBruta;
+                cout << "\nVelocidade: " << viloes[i].velocidade;
+                cout << "\nHabilidade: " << viloes[i].habilidade;
+                cout << endl;
             }
-            cout << endl
-                 << viloes[i].nome << endl;
-            cout << "Vitalidade: " << viloes[i].vitalidade << endl;
-            cout << "Inteligencia: " << viloes[i].inteligencia << endl;
-            cout << "Forca Bruta: " << viloes[i].forcaBruta << endl;
-            cout << "Velocidade: " << viloes[i].velocidade << endl;
-            cout << "Habilidade: " << viloes[i].habilidade << endl;
-        }
-        break;
-    default:
-        cout << "Opcao invalida.";
-        break;
+            break;
+        default:
+            cout << "Opcao invalida.\n";
+            visualizarBaralhos();
+            break;
     }
 }
- 
-bool ehPar(int i)
-{
-    if (i % 2 == 0)
-    {
+
+bool ehPar(int i) {
+    if (i % 2 == 0) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
 //Metodo para embaralhar o deck, ele usa um inteiro aleatorio para trocar as posicoes no array de cartas
-Carta * embaralhaDeck(Carta deck[])
-{
- 
+Carta * embaralhaDeck(Carta deck[]) {
   srand(time(NULL));
-  for (int i = 0; i < 15; i++)
-    {
+  for (int i = 0; i < 15; i++) {
         int random = rand() % 14;
- 
         Carta temp = deck[i];
         deck[i] = deck[random];
         deck[random] = temp;
@@ -456,49 +439,39 @@ Carta * embaralhaDeck(Carta deck[])
     herois[i] =deck[random];
     herois[random] = temp;
     }
-   
   return deck;
 }
- 
-Carta *escolherBaralho()
-{
+
+Carta *escolherBaralho() {
     int opcao;
     cout << "\nDigite qual baralho que jogar: \n1- Herois\n2- Viloes\n";
     cin >> opcao;
- 
-    switch (opcao)
-    {
-    case 1:
-        embaralhaDeck(herois);
-        break;
-    case 2:
-        embaralhaDeck(viloes);
-        break;
-    default:
-        cout << "Opcao invalida";
-        break;
+    switch (opcao) {
+        case 1:
+            embaralhaDeck(herois);
+            break;
+        case 2:
+            embaralhaDeck(viloes);
+            break;
+        default:
+            cout << "Opcao invalida";
+            break;
     }
 }
- 
+
 //metodo para o jogador escolher a carta
-Carta escolheCarta(Carta deck[])
-{
+Carta escolheCarta(Carta deck[]) {
     Carta escolhida;
     Carta cartasPuxadas[3];
     srand(time(NULL));
-    for (int i = 0; i < 3; i++)
-    {
-   
-    int escolhaAleatoria = (rand() % 14);
-        cartasPuxadas[i] = deck[escolhaAleatoria];
-        escolhaAleatoria++;
+    for (int i = 0; i < 3; i++) {
+        int escolhaAleatoria = (rand() % 14);
+            cartasPuxadas[i] = deck[escolhaAleatoria];
+            escolhaAleatoria++;
     }
-    for (int j = 0; j < 3; j++)
-    {
+    for (int j = 0; j < 3; j++) {
         cout << "\nCarta Numero " << j << endl;
-        if (cartasPuxadas[j].especial)
-        {
- 
+        if (cartasPuxadas[j].especial) {
             cout << "\nSUPER-HEROI";
         }
         cout << endl
@@ -509,143 +482,132 @@ Carta escolheCarta(Carta deck[])
         cout << "Velocidade: " << cartasPuxadas[j].velocidade << endl;
         cout << "Habilidade: " << cartasPuxadas[j].habilidade << endl;
     }
- 
+
     int opcao;
     cout << "\nDigite aqui qual carta vai ao combate: ";
     cin >> opcao;
-    switch (opcao)
-    {
-    case 0:
-        escolhida = cartasPuxadas[opcao];
-        break;
-    case 1:
-        escolhida = cartasPuxadas[opcao];
-        break;
-    case 2:
-        escolhida = cartasPuxadas[opcao];
-        break;
-    default:
-        cout << "Opcao invalida.";
-        break;
+    switch (opcao) {
+        case 0:
+            escolhida = cartasPuxadas[opcao];
+            break;
+        case 1:
+            escolhida = cartasPuxadas[opcao];
+            break;
+        case 2:
+            escolhida = cartasPuxadas[opcao];
+            break;
+        default:
+            cout << "Opcao invalida.";
+            break;
     }
     return escolhida;
 }
- 
+
 //metodo para o jogador escolher o atributo;
-int escolherAtributo(Carta carta)
-{
+int escolherAtributo(Carta carta) {
     int opcaoAtributo;
     int atributoEscolhido;
     cout << "\nAgora escolha qual atributo: ";
     cin >> opcaoAtributo;
-    switch (opcaoAtributo)
-    {
-    case 1:
-        atributoEscolhido = carta.vitalidade;
-        break;
-    case 2:
-        atributoEscolhido = carta.inteligencia;
-        break;
-    case 3:
-        atributoEscolhido = carta.forcaBruta;
-        break;
-    case 4:
-        atributoEscolhido = carta.velocidade;
-        break;
-    case 5:
-        atributoEscolhido = carta.habilidade;
-        break;
-    default:
-        cout << "Opcao invalida.";
-        break;
+    switch (opcaoAtributo) {
+        case 1:
+            atributoEscolhido = carta.vitalidade;
+            break;
+        case 2:
+            atributoEscolhido = carta.inteligencia;
+            break;
+        case 3:
+            atributoEscolhido = carta.forcaBruta;
+            break;
+        case 4:
+            atributoEscolhido = carta.velocidade;
+            break;
+        case 5:
+            atributoEscolhido = carta.habilidade;
+            break;
+        default:
+            cout << "Opcao invalida.";
+            break;
     }
     return atributoEscolhido;
 }
- 
-Carta escolherCartaAleatoriamente(Carta deck[])
-{
+
+Carta escolherCartaAleatoriamente(Carta deck[]) {
     Carta escolhida;
     Carta cartasPuxadas[3];
     int escolhaAleatoria = rand() % 14; //verificar se ta sendo aleatorio msm
- 
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < 3; i++) {
         cartasPuxadas[i] = deck[escolhaAleatoria];
         escolhaAleatoria += 1;
     }
     escolhida = cartasPuxadas[rand() % 2];
     return escolhida;
 }
- 
-int escolherAtributoAleatoriamente(Carta carta)
-{
+
+int escolherAtributoAleatoriamente(Carta carta) {
 //algoritmo para a "maquina" escolher o maior atributo da carta.
-  int maior = max(carta.forcaBruta, carta.velocidade);
-  maior = max(carta.inteligencia,maior);
-  maior = max(carta.vitalidade,maior);
-  maior = max(carta.habilidade,maior);
+    int maior = max(carta.forcaBruta, carta.velocidade);
+    maior = max(carta.inteligencia,maior);
+    maior = max(carta.vitalidade,maior);
+    maior = max(carta.habilidade,maior);
     return maior;
-   
+
 }
- 
-void jogar()
-{
-    //Falta loop aqui para continuar os turnos ate as condicoes de vitoria serem atingidas.
- 
-    int atributoJogador;
-    int atributoMaquina;
-    Carta cartaJogador;
-    Carta cartaMaquina;
- 
-  embaralhaDeck(herois);
-    cartaJogador = escolheCarta(herois);
-    atributoJogador = escolherAtributo(cartaJogador);
- 
-    embaralhaDeck(viloes);
-    cartaMaquina = escolherCartaAleatoriamente(viloes);
-    atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
- 
-    if (atributoJogador > atributoMaquina)
-    {
-        pontosJogador += 1;
-    }
-    else
-    {
-        pontosMaquina += 1;
-    }
-    cout << atributoJogador << endl;
-    cout << atributoMaquina << endl;
-    cout << pontosJogador << endl;
-    cout << pontosMaquina << endl;
+
+void jogar() {
+	//Falta loop aqui para continuar os turnos ate as condicoes de vitoria serem atingidas.
+
+	int atributoJogador;
+	int atributoMaquina;
+	Carta cartaJogador;
+	Carta cartaMaquina;
+
+	embaralhaDeck(herois);
+	cartaJogador = escolheCarta(herois);
+	atributoJogador = escolherAtributo(cartaJogador);
+
+	embaralhaDeck(viloes);
+	cartaMaquina = escolherCartaAleatoriamente(viloes);
+	atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+
+	cout << "Atributo Jogador: " << atributoJogador << endl;
+	cout << "Atributo Maquina: " << atributoMaquina << endl;
+
+	if (atributoJogador > atributoMaquina) {
+        cout << "Voce venceu a batalha!\n";
+		pontosJogador += 1;
+	} else {
+	    cout << "Maquina venceu a batalha!\n";
+		pontosMaquina += 1;
+	}
+
+	cout << "\nMeus Pontos: " << pontosJogador << endl;
+	cout << "Pontos Maquina: "<< pontosMaquina << endl;
 }
- 
-int main(int argc, char **argv)
-{
-    iniciaBaralhos();
-    menuInicio();
- 
-    //Falta loop aqui para evitar de o programar ficar "morrendo" qnd seleciona os outros metodos: mostrarRegras(), visualizarBaralhos()...
-    int opcao;
-    cout << "\nDigite aqui sua opcao: ";
-    cin >> opcao;
-    switch (opcao)
-    {
-    case 1:
-        jogar();
-        break;
-    case 2:
-        visualizarBaralhos();
-        break;
-    case 3:
-        mostraRegras();
-        break;
-    case 4:
-        break;
- 
-    default:
-        cout << "Opcao invalida!";
-        break;
-    }
- 
-    return 0;
+
+int main(int argc, char **argv) {
+	iniciaBaralhos();
+	int opcao;
+	do {
+        menuInicio();
+        cout << "\nDigite aqui sua opcao: ";
+        cin >> opcao;
+        switch (opcao) {
+        case 1:
+            jogar();
+            break;
+        case 2:
+            visualizarBaralhos();
+            break;
+        case 3:
+            mostraRegras();
+            break;
+        case 4:
+            break;
+        default:
+            cout << "Opcao invalida!\n";
+            break;
+        }
+    } while (opcao != 4);
+	return 0;
 }
