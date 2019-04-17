@@ -570,8 +570,12 @@ Carta escolherCartaAleatoriamente(Carta deck[])
 
 int escolherAtributoAleatoriamente(Carta carta)
 {
-	return 50;
-	//algoritmo para a "maquina" escolher o maior atributo da carta, falta implementar.
+//algoritmo para a "maquina" escolher o maior atributo da carta.
+  int maior = max(carta.forcaBruta, carta.velocidade);
+  maior = max(carta.inteligencia,maior);
+  maior = max(carta.vitalidade,maior);
+  maior = max(carta.habilidade,maior);
+	return maior;
 }
 
 void jogar()
