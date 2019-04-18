@@ -454,7 +454,7 @@ Carta *escolherBaralho() {
             embaralhaDeck(viloes);
             break;
         default:
-            cout << "Opcao invalida";
+            cout << "Opcao invalida.\n";
             break;
     }
 }
@@ -485,6 +485,7 @@ Carta escolheCarta(Carta deck[]) {
 
     int opcao;
     cout << "\nDigite aqui qual carta vai ao combate: ";
+    inicio:
     cin >> opcao;
     switch (opcao) {
         case 0:
@@ -497,8 +498,8 @@ Carta escolheCarta(Carta deck[]) {
             escolhida = cartasPuxadas[opcao];
             break;
         default:
-            cout << "Opcao invalida.";
-            break;
+            cout << "Opcao invalida.\n";
+            goto inicio;
     }
     return escolhida;
 }
@@ -508,6 +509,8 @@ int escolherAtributo(Carta carta) {
     int opcaoAtributo;
     int atributoEscolhido;
     cout << "\nAgora escolha qual atributo: ";
+    cout << "\n1)Vit 2)Int 3)For 4)Vel 5)Hab\n";
+    inicio:
     cin >> opcaoAtributo;
     switch (opcaoAtributo) {
         case 1:
@@ -526,8 +529,8 @@ int escolherAtributo(Carta carta) {
             atributoEscolhido = carta.habilidade;
             break;
         default:
-            cout << "Opcao invalida.";
-            break;
+            cout << "Opcao invalida.\n";
+            goto inicio;
     }
     return atributoEscolhido;
 }
@@ -576,12 +579,21 @@ void jogar() {
         cout << "Atributo Jogador: " << atributoJogador << endl;
         cout << "Atributo Maquina: " << atributoMaquina << endl;
 
+        //Mostrar quem venceu a rodada
         if (atributoJogador > atributoMaquina) {
             cout << "Voce venceu a batalha!\n";
-            pontosJogador += 1;
+            if (cartaJogador.especial) {
+                pontosJogador += 2;
+            } else {
+                pontosJogador += 1;
+            }
         } else {
             cout << "Maquina venceu a batalha!\n";
-            pontosMaquina += 1;
+            if (cartaMaquina.especial) {
+                pontosMaquina += 2;
+            } else {
+                pontosMaquina +=1;
+            }
         }
 
         cout << "\nMeus Pontos: " << pontosJogador << endl;
