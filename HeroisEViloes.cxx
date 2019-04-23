@@ -567,47 +567,108 @@ void jogar() {
 	int fimDoJogo = 0;
 	Carta cartaJogador;
 	Carta cartaMaquina;
-    do {
-        embaralhaDeck(herois);
-        cartaJogador = escolheCarta(herois);
-        atributoJogador = escolherAtributo(cartaJogador);
+    int opcaoJogador;
 
-        embaralhaDeck(viloes);
-        cartaMaquina = escolherCartaAleatoriamente(viloes);
-        atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+    cout << "Voce deseja jogar com:/n";
+    cout << "1)Herois /n 2)Viloes";
+    cin >> opcaoJogador;
 
-        cout << "Atributo Jogador: " << atributoJogador << endl;
-        cout << "Atributo Maquina: " << atributoMaquina << endl;
+    if (opcaoJogador != 1 || opcaoJogador != 2){
+        cout << "Opcao invalida, escolha novamente";
+        cin >> opcaoJogador;
+    }
 
-        //Mostrar quem venceu a rodada
-        if (atributoJogador > atributoMaquina) {
-            cout << "Voce venceu a batalha!\n";
-            if (cartaJogador.especial) {
-                pontosJogador += 2;
+    if(opcaoJogador == 1){
+        do {
+            embaralhaDeck(herois);
+            cartaJogador = escolheCarta(herois);
+            atributoJogador = escolherAtributo(cartaJogador);
+
+            embaralhaDeck(viloes);
+            cartaMaquina = escolherCartaAleatoriamente(viloes);
+            atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+
+            cout << "Atributo Jogador: " << atributoJogador << endl;
+            cout << "Atributo Maquina: " << atributoMaquina << endl;
+
+            //Mostrar quem venceu a rodada
+            if (atributoJogador > atributoMaquina) {
+                cout << "Voce venceu a batalha!\n";
+                if (cartaJogador.especial) {
+                    pontosJogador += 2;
+                } else {
+                    pontosJogador += 1;
+                }
             } else {
-                pontosJogador += 1;
+                cout << "Maquina venceu a batalha!\n";
+                if (cartaMaquina.especial) {
+                    pontosMaquina += 2;
+                } else {
+                    pontosMaquina +=1;
+                }
             }
-        } else {
-            cout << "Maquina venceu a batalha!\n";
-            if (cartaMaquina.especial) {
-                pontosMaquina += 2;
-            } else {
-                pontosMaquina +=1;
+
+            cout << "\nMeus Pontos: " << pontosJogador << endl;
+            cout << "Pontos Maquina: "<< pontosMaquina << endl;
+
+            // Mostrar quem ganhou ao final do jogo
+            if (pontosJogador >= pontuacaoVitoria) {
+                cout << "O jogo acabou e voce venceu!\n";
+                fimDoJogo = 1;
+            } else if (pontosMaquina >= pontuacaoVitoria) {
+                cout << "O jogo acabou e a maquina venceu!\n";
+                fimDoJogo = 1;
             }
-        }
 
-        cout << "\nMeus Pontos: " << pontosJogador << endl;
-        cout << "Pontos Maquina: "<< pontosMaquina << endl;
-
-        // Mostrar quem ganhou ao final do jogo
-        if (pontosJogador >= pontuacaoVitoria) {
-            cout << "O jogo acabou e voce venceu!\n";
-            fimDoJogo = 1;
-        } else if (pontosMaquina >= pontuacaoVitoria) {
-            cout << "O jogo acabou e a maquina venceu!\n";
-            fimDoJogo = 1;
-        }
     } while (fimDoJogo != 1);
+
+    } else if (opcaoJogador == 2){
+
+        do {
+            embaralhaDeck(viloes);
+            cartaJogador = escolheCarta(viloes);
+            atributoJogador = escolherAtributo(cartaJogador);
+
+            embaralhaDeck(herois);
+            cartaMaquina = escolherCartaAleatoriamente(herois);
+            atributoMaquina = escolherAtributoAleatoriamente(cartaMaquina);
+
+            cout << "Atributo Jogador: " << atributoJogador << endl;
+            cout << "Atributo Maquina: " << atributoMaquina << endl;
+
+            //Mostrar quem venceu a rodada
+            if (atributoJogador > atributoMaquina) {
+                cout << "Voce venceu a batalha!\n";
+                if (cartaJogador.especial) {
+                    pontosJogador += 2;
+                } else {
+                    pontosJogador += 1;
+                }
+            } else {
+                cout << "Maquina venceu a batalha!\n";
+                if (cartaMaquina.especial) {
+                    pontosMaquina += 2;
+                } else {
+                    pontosMaquina +=1;
+                }
+            }
+
+            cout << "\nMeus Pontos: " << pontosJogador << endl;
+            cout << "Pontos Maquina: "<< pontosMaquina << endl;
+
+            // Mostrar quem ganhou ao final do jogo
+            if (pontosJogador >= pontuacaoVitoria) {
+                cout << "O jogo acabou e voce venceu!\n";
+               fimDoJogo = 1;
+            } else if (pontosMaquina >= pontuacaoVitoria) {
+               cout << "O jogo acabou e a maquina venceu!\n";
+               fimDoJogo = 1;
+            }
+        } while (fimDoJogo != 1);
+   
+    }
+
+    
 }
 
 int main(int argc, char **argv) {
