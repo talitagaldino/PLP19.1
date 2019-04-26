@@ -67,7 +67,7 @@ baralhoViloes[14] = criarCarta("Mistica", 14, 51, 57, 38, 27, 61, false);
 void embaralhar(carta baralho[], int limite) {
     srand (time(NULL));
     for (int i = 0; i < limite; i++){
-        int novaPosicao =  rand() % (15 - limite);
+        int novaPosicao =  rand() % (limite);
         carta aux  = baralho[i];
         baralho[i] = baralho[novaPosicao];
         baralho[novaPosicao] = aux;
@@ -76,6 +76,7 @@ void embaralhar(carta baralho[], int limite) {
 }
 
 void exibirCartasNaTela(carta baralho[],int tamanho) {
+    limparTela();
     for (int i = 0; i < tamanho ; i++){
         if (baralho[i].especial){
 				cout << "\nSUPER-HEROI";
@@ -88,4 +89,33 @@ void exibirCartasNaTela(carta baralho[],int tamanho) {
 			cout << "Habilidade: " << baralho[i].habilidade << endl;
     }
     
+}
+
+int getValorAtributo(carta cartaJodagor, int atributo){
+    int resposta;
+    switch (atributo){
+        case 0:
+            resposta = cartaJodagor.vitalidade;
+            break;
+
+        case 1:
+            resposta = cartaJodagor.inteligencia;
+            break;
+        
+        case 2:
+            resposta = cartaJodagor.forcaBruta;
+            break;
+        
+        case 3:
+            resposta = cartaJodagor.velocidade;
+            break;
+        case 4:
+            resposta = cartaJodagor.habilidade;
+            break;
+
+        default:
+            resposta = 0;
+            break;
+    }
+    return resposta;
 }

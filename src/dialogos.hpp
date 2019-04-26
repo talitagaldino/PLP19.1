@@ -60,5 +60,25 @@ void mostraRegras() {
     cout <<"->Marca 1 ponto quem tiver maior atributo" << endl;
     cout <<"->As duas cartas que batalharam são removidas do jogo" << endl;
     cout <<"->Quando acabarem as cartas quem tiver mais ponto vence o jogo." << endl;
-    exibirMenu();
+}
+
+void DialogoEntradaPlayer1(bool isTresCartas,bool isRespostaInvalida, int pontosPlayer1, int pontosPlayer2){
+    cout << "\nPLACAR:\nPONTOS DO JOGADOR 1: " << pontosPlayer1 << "\nPONTOS DO JOGADOR 2: " << pontosPlayer2 << endl;
+    cout << "\n(Se quiser consultar as regras digite 9, ao inves do comando)" << endl;
+    if(isRespostaInvalida){
+        cout << "\nRegras Visualizadas ou resposta invalida, tente novamente." << endl;
+    }
+    cout << "Digite o numero correspondente a carta de sua escolha" << endl;
+    if(isTresCartas){
+       cout << "0 - primeira carta, 1 - segunda carta:, 2 - terceira carta: "; 
+    } else {
+        cout << "0 - primeira carta, 1 - segunda carta: ";
+    }
+}
+
+void exibirRegrasInGame(){
+    mostraRegras();
+    cout << "\n digite 1 para voltar ao jogo: ";
+    string pausarExecucao;
+    cin >> pausarExecucao;
 }
