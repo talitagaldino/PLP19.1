@@ -1,6 +1,7 @@
 int entradaPlayer1(carta tuplaDeCartasParaEscolherPlayer1[3], int cartasRestantes, int pontosPlayer1, int pontosPlayer2) {
     int resposta = -1;
     if(cartasRestantes == 1){
+		exibirCartasNaTela(tuplaDeCartasParaEscolherPlayer1, 1);
         cout << "\033[1;32mEsta é sua ultima carta, digite 1 para continuar: \033[m";
         cin >> resposta;//apenas para pausar axecucao
         resposta = 0;
