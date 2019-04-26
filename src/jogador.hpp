@@ -1,7 +1,7 @@
 int entradaPlayer1(carta tuplaDeCartasParaEscolherPlayer1[3], int cartasRestantes, int pontosPlayer1, int pontosPlayer2) {
     int resposta = -1;
     if(cartasRestantes == 1){
-        cout << "Esta é sua ultima carta, digite 1 para continuar: ";
+        cout << "\033[1;32mEsta é sua ultima carta, digite 1 para continuar: \033[m";
         cin >> resposta;//apenas para pausar axecucao
         resposta = 0;
     } else if(cartasRestantes == 2) {
@@ -59,7 +59,7 @@ int entradaAtributoPlayer1(bool atributorEmpatados[]){
     cin >> resposta;
     while ((resposta < 0 || resposta > 4) || atributorEmpatados[resposta] == true){
         limparTela();
-        cout << "Resposta invalida ou atributo ja foi usado, tente novamente!" << endl;
+        cout << "\033[1;31mResposta invalida ou atributo ja foi usado, tente novamente!\033[m" << endl;
         cout << "Escolha um atributo:" << endl;
         cout << "0)Vit 1)Int 2)For 3)Vel 4)Hab: ";
         cin >> resposta;

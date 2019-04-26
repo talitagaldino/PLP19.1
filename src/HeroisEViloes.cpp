@@ -38,7 +38,7 @@ int main() {
                 
                 default:
                 dialogoJogar();
-                cout << "\nOpcao invalida! tente novamente!";
+                cout << "\033[1;31m\nOpcao invalida! tente novamente!\033[m";
                     break;
                 }
 
@@ -71,7 +71,7 @@ bool menu(carta baralhoHerois[],carta baralhoViloes[]) {
             case 4:
                 break;
             default:
-                cout << "Opcao invalida!";
+                cout << "\033[1;31mOpcao invalida! Tente novamente!\033[m\n";
                 break;
         }
     } while (entradaUsuario != 1 && entradaUsuario != 4);
@@ -97,7 +97,7 @@ void visualizarBaralhos(carta baralhoHerois[],carta baralhoViloes[]) {
         
         default:
             exibirBaralhoMenu();
-            cout << "\nEntrada invalida! Tente novamente\nDigite sua opcao: ";
+            cout << "\033[1;31m\nEntrada invalida! Tente novamente\033[m\nDigite sua opcao: ";
             cin >> entradaUsuario;
             break;
         }
@@ -163,17 +163,17 @@ void gameLoop(carta baralhoPlayer1[], carta baralhoPlayer2[], int sizeBaralhos) 
     }
     if (pontosPlayer1 > pontosPlayer2) {
         limparTela();
-        cout << "Jogador 1 venceu, digite 1 para voltar ao menu.";
+        cout << "\033[7;1;32mJogador 1 venceu, digite 1 para voltar ao menu.\033[m";
         string pausarExeculcao;
         cin >> pausarExeculcao;
     } else if (pontosPlayer2 > pontosPlayer1) {
         limparTela();
-        cout << "Jogador 2(Maquina) venceu, digite 1 para voltar ao menu.";
+        cout << "\033[7;1;32mJogador 2(Maquina) venceu, digite 1 para voltar ao menu.\033[m";
         string pausarExeculcao;
         cin >> pausarExeculcao;
     } else {
         limparTela();
-        cout << "Deu empate, digite 1 para voltar ao menu.";
+        cout << "\033[7;1;32mDeu empate, digite 1 para voltar ao menu.\033[m";
         string pausarExeculcao;
         cin >> pausarExeculcao;
     }

@@ -22,13 +22,13 @@ void exibirMenu(){
 
 void exibirTelaInicialMenu() {
     limparTela();
-    cout << " _                    _                    _ _                 " << endl;
+    cout << "\033[1;31m _                    _                    _ _                 " << endl;
     cout << "| |                  (_)                  (_) |                " << endl;
     cout << "| |__   ___ _ __ ___  _ ___    ___  __   ___| | ___   ___  ___ " << endl;
     cout << "| '_ \\ / _ \\ '__/ _ \\| / __|  / _ \\ \\ \\ / / | |/ _ \\ / _ \\/ __|" << endl;
     cout << "| | | |  __/ | | (_) | \\__ \\ |  __/  \\ V /| | | (_) |  __/\\__ \\" << endl;
     cout << "|_| |_|\\___|_|  \\___/|_|___/  \\___|   \\_/ |_|_|\\___/ \\___||___/" << endl;
-    cout << "===============================================================" << endl;
+    cout << "===============================================================\033[m" << endl;
     exibirMenu();
 }
 
@@ -51,7 +51,7 @@ void dialogoJogar() {
 void mostraRegras() {
     limparTela();
     cout <<"\nAs regras do jogo sao as seguintes:" << endl;
-    cout <<"->O jogador e a máquina irão alternar turnos " << endl;
+    cout <<"->O jogador e a máquina irão alternar turnos" << endl;
     cout <<"->O jogador puxa aleatoriamente 3 cartas das 15 do seu baralho" << endl;
     cout <<"->Escolhe 1 para colocar em combate" << endl;
     cout <<"->O mesmo serve para a máquina" << endl;
@@ -63,10 +63,10 @@ void mostraRegras() {
 }
 
 void DialogoEntradaPlayer1(bool isTresCartas,bool isRespostaInvalida, int pontosPlayer1, int pontosPlayer2){
-    cout << "\nPLACAR:\nPONTOS DO JOGADOR 1: " << pontosPlayer1 << "\nPONTOS DO JOGADOR 2: " << pontosPlayer2 << endl;
-    cout << "\n(Se quiser consultar as regras digite 9, ao inves do comando)" << endl;
+    cout << "\033[1;33m\nPLACAR:\nPONTOS DO JOGADOR 1: " << pontosPlayer1 << "\nPONTOS DO JOGADOR 2: " << pontosPlayer2 << endl;
+    cout << "\033[m\n(Se quiser consultar as regras digite 9, ao inves do comando)" << endl;
     if(isRespostaInvalida){
-        cout << "\nRegras Visualizadas ou resposta invalida, tente novamente." << endl;
+        cout << "\033[1;31m\nRegras Visualizadas ou resposta invalida, tente novamente.\033[m" << endl;
     }
     cout << "Digite o numero correspondente a carta de sua escolha" << endl;
     if(isTresCartas){
