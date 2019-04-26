@@ -42,7 +42,13 @@ int entradaPlayer1(carta tuplaDeCartasParaEscolherPlayer1[3], int cartasRestante
 
 int entradaPlayer2(int cartasRestantes) {
     srand (time(NULL));
-    return rand() % (cartasRestantes);
+    int resposta;
+    if(cartasRestantes > 3) {
+        resposta = rand() % (3);
+    } else {
+        resposta = rand() % (cartasRestantes);
+    }
+    return resposta;
 }
 
 int entradaAtributoPlayer1(bool atributorEmpatados[]){
