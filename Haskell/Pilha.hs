@@ -1,0 +1,1 @@
+--Aqui contera a abstracao da estrutura de dados Pilha, com todos os metodos auxiliares para funcionar.
