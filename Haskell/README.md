@@ -20,7 +20,7 @@ cabal install split
 Depois de instalar as dependências, compile o jogo com o seguinte comando:
 
 ```bash
-ghc -o heroisEViloes  Main.hs
+ghc -o heroisEViloes  HeroisEviloes.hs
 ```
 
 ## Executar
