@@ -8,7 +8,7 @@ exibeLetreiro :: String
 exibeLetreiro = unsafeDupablePerformIO (readFile "letreiro.txt")
 
 atributos :: String
-atributos = "[VITALIDADE | INTELIGENCIA | FORCA | VELOCIDADE | HABILIDADE]"
+atributos = "VITALIDADE | INTELIGENCIA | FORCA | VELOCIDADE | HABILIDADE"
 
 leAtributo :: IO String
 leAtributo = do
