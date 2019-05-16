@@ -21,7 +21,7 @@ module Carta where
   
   --Ver como sera o metodo de desempate
   desempata :: Carta -> Carta -> Int
-  desempata carta1 carta2 = if (vitalidade carta1) < (vitalidade carta2) then 1 else -1 
+  desempata carta1 carta2 = if (especial carta1) < (especial carta2) then 1 else -1 
   
   
   compara :: String -> Carta -> Carta -> Int
