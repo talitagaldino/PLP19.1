@@ -13,19 +13,48 @@ main = do
 opcoesMenu :: String
 opcoesMenu = "\nEscolha uma Opcão: \n1) Jogar \n2) Visualizar Baralhos \n3) Regras \n4) Sair"
 
-menuVisualizaBaralho :: IO()
-menuVisualizaBaralho = do
+menuVisualizaBaralho :: [Carta.Carta] -> [Carta.Carta] -> IO()
+menuVisualizaBaralho listaHerois listaViloes = do
   putStrLn("\nVocê deseja visualizar qual baralho: \n1) Heróis \n2) Vilões")
   deck <- getLine
-  if(deck == "1") then do
-      putStrLn("Funcao para imprimir lista de herois")
-    --putStrLn(Auxiliar.imprimeLista listaHerois)
+  if(deck == "1") then do 
+    putStrLn(Carta.descricaoCarta (listaHerois !! 0))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 1))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 2))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 3))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 4))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 5))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 6))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 7))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 8))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 9))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 10))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 11))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 12))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 13))
+    putStrLn(Carta.descricaoCarta (listaHerois !! 14))
+    menuInicial
+    
   else if(deck == "2") then do
-       putStrLn("Funcao para imprimir lista de viloes")
-     --putStrLn(Auxiliar.imprimeLista listaViloes)
+    putStrLn(Carta.descricaoCarta (listaViloes !! 0))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 1))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 2))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 3))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 4))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 5))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 6))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 7))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 8))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 9))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 10))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 11))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 12))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 13))
+    putStrLn(Carta.descricaoCarta (listaViloes !! 14))
+    menuInicial
   else do 
     putStrLn("Digite uma opção válida.")
-    menuVisualizaBaralho
+    menuVisualizaBaralho listaHerois listaViloes
 
 menuMostraRegras :: IO()
 menuMostraRegras = do
@@ -43,13 +72,16 @@ menuMostraRegras = do
   putStrLn("")
   menuInicial
 
+
+ 
+
 menuInicial :: IO()
 menuInicial = do
     putStrLn(opcoesMenu)
     putStrLn("Digite aqui sua opção: ")
     opcao <- getLine
 
-    if opcao == "1" then do
+    if (opcao == "1") then do
       clearScreen
       let cartasHerois = Auxiliar.iniciarCartasHerois
       deckHerois <- shuffleM cartasHerois
@@ -57,194 +89,28 @@ menuInicial = do
       deckViloes <- shuffleM cartaViloes
       putStrLn ("Você deseja jogar com:  \n1) Heróis \n2) Vilões")
       baralho <- getLine
-      if(baralho == "1") then do
-        let listaHerois = take 15 deckHerois
-        let listaViloes = take 15 deckViloes
-        let heroi1 = listaHerois !! 0
-        let heroi2 = listaHerois !! 1
-        let heroi3 = listaHerois !! 2
-      
-        clearScreen
-
-        putStrLn("Primeira Carta\n" ++ Carta.descricaoCarta(heroi1))
-        putStrLn("Segunda Carta\n" ++ Carta.descricaoCarta(heroi2))
-        putStrLn("Terceira Carta\n" ++ Carta.descricaoCarta(heroi3))
-
-        putStrLn("Deseja batalhar com qual carta: \n1) Primeira Carta\n2) Segunda Carta\n3) Terceira Carta" )
-
-        escolha <- getLine
-        if(escolha == "1") then do
-          let cartaEscolhida = listaHerois !! 0
-          let cartaBatalha = listaViloes !! 0
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          
-        else if (escolha == "2") then do
-          let cartaEscolhida = listaHerois !! 1
-          let cartaBatalha = listaViloes !! 1
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-
-        else if (escolha == "3") then do
-          let cartaEscolhida = listaHerois !! 2
-          let cartaBatalha = listaViloes !! 2
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-
-
-        else
-          putStrLn("Entrada invalida")
-    
+      if (baralho == "1") then do
+        let cartaBatalha = deckViloes !! 0
+        Auxiliar.escolheCarta deckHerois cartaBatalha
+      else if( baralho == "2") then do
+        let cartaBatalha = deckHerois !! 0
+        Auxiliar.escolheCarta deckViloes cartaBatalha
       else do
-        let listaViloes = take 15 deckViloes
-        let listaHerois = take 15 deckHerois
-        let vilao1 = listaViloes !! 0
-        let vilao2 = listaViloes !! 1
-        let vilao3 = listaViloes !! 2
+        putStrLn("Entrada invalida.")
+        menuInicial
         
-        clearScreen
-        putStrLn("SUAS CARTAS PARA BATALHA: \n")
-        
-        putStrLn("Primeira Carta\n" ++ Carta.descricaoCarta(vilao1))
-        putStrLn("Segunda Carta\n" ++ Carta.descricaoCarta(vilao2))
-        putStrLn("Terceira Carta\n" ++ Carta.descricaoCarta(vilao3))
-
-        putStrLn("Deseja batalhar com qual carta: \n1) Primeira Carta\n2) Segunda Carta\n3) Terceira Carta" )
-
-        escolha <- getLine
-        if(escolha == "1") then do
-          let cartaEscolhida = listaViloes !! 0
-          let cartaBatalha = listaHerois !! 0
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-
     
-        else if (escolha == "2") then do
-          let cartaEscolhida = listaViloes !! 1
-          let cartaBatalha = listaHerois !! 1
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-
-          
-        else if (escolha == "3") then do
-          let cartaEscolhida = listaViloes !! 2
-          let cartaBatalha = listaHerois !! 2
-          putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(cartaEscolhida))
-          putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
-          atributo <- Auxiliar.leAtributo
-          let comparador = Carta.compara atributo cartaEscolhida cartaBatalha
-          if (comparador == 1) then do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("VOCE VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-          
-          else do
-            putStrLn ("")
-            putStrLn ("CARTA MAQUINA")
-            putStrLn(Carta.descricaoCarta (cartaBatalha))
-            putStrLn ("MAQUINA VENCEU O TURNO")
-            --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
-            --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
-
-        else do
-          putStrLn("Entrada invalida")
-        
-    else if opcao == "2" then do
+      
+    else if (opcao == "2") then do
       clearScreen
-      menuVisualizaBaralho
+      let cartasHerois = Auxiliar.iniciarCartasHerois
+      let cartaViloes = Auxiliar.iniciarCartasViloes
+      menuVisualizaBaralho cartasHerois cartaViloes
 
-    else if opcao == "3" then do
+    else if (opcao == "3") then do
       clearScreen
       menuMostraRegras
 
-    else if opcao == "4" then clearScreen
+    else if (opcao == "4") then clearScreen
         else menuInicial
+

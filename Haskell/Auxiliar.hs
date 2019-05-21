@@ -34,6 +34,86 @@ escolherAtributoAuxiliar vit int for vel hab
   | otherwise = "HABILIDADE"
   
 
+
+
+escolheCarta :: [Carta.Carta] -> Carta.Carta-> IO()
+escolheCarta deck cartaBatalha = do
+  let carta1 = deck !! 0
+  let carta2 = deck !! 1
+  let carta3 = deck !! 2
+
+      
+  putStrLn("Primeira Carta\n" ++ Carta.descricaoCarta(carta1))
+  putStrLn("Segunda Carta\n" ++ Carta.descricaoCarta(carta2))
+  putStrLn("Terceira Carta\n" ++ Carta.descricaoCarta(carta3))
+
+  putStrLn("Deseja batalhar com qual carta: \n1) Primeira Carta\n2) Segunda Carta\n3) Terceira Carta" )
+
+  escolha <- getLine
+  if (escolha == "1") then do
+    putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta1))
+    putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
+    atributo <- Auxiliar.leAtributo
+    let comparador = Carta.compara atributo carta1 cartaBatalha
+    if (comparador == 1) then do
+      putStrLn ("")
+      putStrLn ("CARTA MAQUINA")
+      putStrLn(Carta.descricaoCarta (cartaBatalha))
+      putStrLn ("VOCE VENCEU O TURNO")
+    
+    else do
+      putStrLn ("")
+      putStrLn ("CARTA MAQUINA")
+      putStrLn(Carta.descricaoCarta (cartaBatalha))
+      putStrLn ("MAQUINA VENCEU O TURNO")
+      --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
+      --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+
+    else if (escolha == "2") then do
+        putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta2))
+        putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
+        atributo <- Auxiliar.leAtributo
+        let comparador = Carta.compara atributo carta2 cartaBatalha
+        if (comparador == 1) then do
+          putStrLn ("")
+          putStrLn ("CARTA MAQUINA")
+          putStrLn(Carta.descricaoCarta (cartaBatalha))
+          putStrLn ("VOCE VENCEU O TURNO")
+          --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
+          --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+        
+        else do
+          putStrLn ("")
+          putStrLn ("CARTA MAQUINA")
+          putStrLn(Carta.descricaoCarta (cartaBatalha))
+          putStrLn ("MAQUINA VENCEU O TURNO")
+          --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
+          --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+
+    else if (escolha == "3") then do
+    putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta3))
+    putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
+    atributo <- Auxiliar.leAtributo
+    let comparador = Carta.compara atributo carta3 cartaBatalha
+    if (comparador == 1) then do
+      putStrLn ("")
+      putStrLn ("CARTA MAQUINA")
+      putStrLn(Carta.descricaoCarta (cartaBatalha))
+      putStrLn ("VOCE VENCEU O TURNO")
+      --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
+      --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+    
+    else do
+      putStrLn ("")
+      putStrLn ("CARTA MAQUINA")
+      putStrLn(Carta.descricaoCarta (cartaBatalha))
+      putStrLn ("MAQUINA VENCEU O TURNO")
+      --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
+      --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+
+  else do putStrLn("entrada invalida")
+
+
 verificaAtributo :: String -> Bool
 verificaAtributo atributo 
   | atributo == "VITALIDADE" = True
@@ -58,9 +138,6 @@ iniciarCartasViloes = do
     let lista_cartas = ((map (mapeiaCarta 0)) (lista))
     return lista_cartas !! 0 
 
-
---Funcao para imprimir uma lista recursivamente
---imprimeLista :: [Carta.Carta] -> String
    
 mapeiaCarta :: Int -> [String] -> Carta.Carta
 mapeiaCarta posicao lista =
