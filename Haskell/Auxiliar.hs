@@ -4,6 +4,8 @@ import System.IO.Unsafe(unsafeDupablePerformIO)
 import System.Random
 import Data.List.Split
 
+removeCarta lista item = [g | g <- lista, g/= item ]
+
 exibeLetreiro :: String
 exibeLetreiro = unsafeDupablePerformIO (readFile "letreiro.txt")
 
@@ -36,8 +38,13 @@ escolherAtributoAuxiliar vit int for vel hab
 
 
 
-escolheCarta :: [Carta.Carta] -> Carta.Carta-> IO()
-escolheCarta deck cartaBatalha = do
+escolheCarta :: [Carta.Carta] -> [Carta.Carta] -> Int -> Int -> Int -> IO()
+escolheCarta _ _ 0 pontos1 pontos2 
+  | pontos1 > pontos2 = putStrLn("Jogador 1 Venceu")
+  | pontos1 < pontos2 = putStrLn("Jogador 2 Venceu")
+  | otherwise = putStrLn("Deu empate")
+escolheCarta deck deck2 rodadas pontos1 pontos2 = do
+  let cartaBatalha = deck2 !! 0
   let carta1 = deck !! 0
   let carta2 = deck !! 1
   let carta3 = deck !! 2
@@ -52,6 +59,7 @@ escolheCarta deck cartaBatalha = do
   escolha <- getLine
   if (escolha == "1") then do
     putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta1))
+    putStrLn("\nTurnos restantes!!!!!!!!: \n" ++ show rodadas)
     putStrLn("Agora digite seu atributo para batalha: " ++ Auxiliar.atributos)
     atributo <- Auxiliar.leAtributo
     let comparador = Carta.compara atributo carta1 cartaBatalha
@@ -60,6 +68,7 @@ escolheCarta deck cartaBatalha = do
       putStrLn ("CARTA MAQUINA")
       putStrLn(Carta.descricaoCarta (cartaBatalha))
       putStrLn ("VOCE VENCEU O TURNO")
+      escolheCarta (removeCarta deck carta1) (removeCarta deck2 cartaBatalha) (rodadas - 1) (pontos1 + 1) pontos2
     
     else do
       putStrLn ("")
@@ -68,6 +77,8 @@ escolheCarta deck cartaBatalha = do
       putStrLn ("MAQUINA VENCEU O TURNO")
       --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
       --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+      escolheCarta (removeCarta deck carta1) (removeCarta deck2 cartaBatalha) (rodadas - 1) pontos1 (pontos2 + 1) 
+      
 
     else if (escolha == "2") then do
         putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta2))
@@ -81,6 +92,7 @@ escolheCarta deck cartaBatalha = do
           putStrLn ("VOCE VENCEU O TURNO")
           --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
           --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+          escolheCarta (removeCarta deck carta2) (removeCarta deck2 cartaBatalha) (rodadas - 1) (pontos1 + 1) pontos2
         
         else do
           putStrLn ("")
@@ -89,6 +101,7 @@ escolheCarta deck cartaBatalha = do
           putStrLn ("MAQUINA VENCEU O TURNO")
           --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
           --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+          escolheCarta (removeCarta deck carta2) (removeCarta deck2 cartaBatalha) (rodadas - 1) pontos1 (pontos2 + 1)
 
     else if (escolha == "3") then do
     putStrLn("\nA carta escolhida foi: \n" ++ Carta.descricaoCarta(carta3))
@@ -102,6 +115,7 @@ escolheCarta deck cartaBatalha = do
       putStrLn ("VOCE VENCEU O TURNO")
       --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
       --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+      escolheCarta (removeCarta deck carta3) (removeCarta deck2 cartaBatalha) (rodadas - 1) (pontos1 + 1) pontos2
     
     else do
       putStrLn ("")
@@ -110,6 +124,7 @@ escolheCarta deck cartaBatalha = do
       putStrLn ("MAQUINA VENCEU O TURNO")
       --COLOCAR OS PONTOS NO PLAYER OU NA MAQUINA, CASO SEJA SUPER COLOCA 2 PONTOS
       --FALTA REMOVER CARTAS QUE BATALHARAM DAS LISTAS DE HEROIS E VILOES
+      escolheCarta (removeCarta deck carta3) (removeCarta deck2 cartaBatalha) (rodadas - 1) pontos1 (pontos2 + 1)
 
   else do putStrLn("entrada invalida")
 

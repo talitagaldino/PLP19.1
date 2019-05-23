@@ -90,11 +90,13 @@ menuInicial = do
       putStrLn ("Você deseja jogar com:  \n1) Heróis \n2) Vilões")
       baralho <- getLine
       if (baralho == "1") then do
-        let cartaBatalha = deckViloes !! 0
-        Auxiliar.escolheCarta deckHerois cartaBatalha
+		--gameLoop deckHerois deckViloes 15
+        --let cartaBatalha = deckViloes !! 0
+        Auxiliar.escolheCarta deckHerois deckViloes 15 0 0
       else if( baralho == "2") then do
-        let cartaBatalha = deckHerois !! 0
-        Auxiliar.escolheCarta deckViloes cartaBatalha
+		--gameLoop deckViloes deckHerois 15
+        --let cartaBatalha = deckHerois !! 0
+        Auxiliar.escolheCarta deckViloes deckHerois 15 0 0
       else do
         putStrLn("Entrada invalida.")
         menuInicial
@@ -113,4 +115,3 @@ menuInicial = do
 
     else if (opcao == "4") then clearScreen
         else menuInicial
-

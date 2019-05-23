@@ -1,7 +1,7 @@
 module Carta where
 
   data Carta = Carta {nome :: String, vitalidade :: Int, inteligencia :: Int, forcaBruta :: Int, velocidade :: Int, habilidade :: Int, especial :: Bool
-                           } deriving (Show)  
+                           } deriving (Show, Eq)
                             
   descricaoCarta:: Carta -> String
   descricaoCarta (Carta {nome = nom, vitalidade = vit,
