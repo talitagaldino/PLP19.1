@@ -98,7 +98,7 @@ menuInicial = do
         --let cartaBatalha = deckHerois !! 0
         Auxiliar.escolheCarta deckViloes deckHerois 15 0 0
       else do
-        putStrLn("Entrada invalida.")
+        putStrLn("Entrada Inválida.")
         menuInicial
         
     
