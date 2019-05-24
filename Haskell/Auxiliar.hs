@@ -21,7 +21,7 @@ leAtributo = do
 escolheCarta :: [Carta.Carta] -> [Carta.Carta] -> Int -> Int -> Int -> IO()
 escolheCarta _ _ 0 pontos1 pontos2 
   | pontos1 > pontos2 = putStrLn("Jogador 1 Venceu")
-  | pontos1 < pontos2 = putStrLn("Máquina")
+  | pontos1 < pontos2 = putStrLn("Máquina Venceu")
   | otherwise = putStrLn("Empate")
 escolheCarta deck deck2 rodadas pontos1 pontos2 = do
   let cartaBatalha = deck2 !! 0
