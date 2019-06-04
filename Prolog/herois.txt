@@ -1,0 +1,15 @@
+Homem Aranha,31,71,45,38,82,False
+Homem de Ferro,48,71,54,52,49,True
+Thor,71,18,83,38,68,True
+Capitão América,48,38,89,21,45,False
+Viúva Negra,58,41,78,27,42,False
+Wolverine,61,25,83,28,19,False
+Máquina de Combate,62,32,61,55,65,False
+Homem Formiga,35,48,37,40,68,False
+Capitã Marvel,87,28,44,48,62,True
+Dr.Estranho,18,86,12,33,81,False
+Pantera Negra,42,40,74,65,21,False
+Hulk,78,3,90,20,14,False
+Ciclope,29,42,39,24,73,False
+Mulher Invisível,72,38,21,34,65,False
+Mulher Maravilha,58,30,76,51,48,False
