@@ -4,9 +4,9 @@ exibeLetreiro :-
     close(Str),
     nl,nl,
     exibeNaTela(String).
-
-
+    
 menuInicial :-
+    nl,
     write('1) Jogar'),nl,
     write('2) Visualizar Baralhos'),nl,
     write('3) Regras'),nl,
@@ -15,7 +15,12 @@ menuInicial :-
 
 
 visualizaBaralho :-
-    write("Metodo para visualizar baralhos....!").
+    open('cartas.txt', read, Str),
+    read_file(Str,String),
+    close(Str),
+    nl,nl,
+    exibeNaTela(String),
+    menu.
 
 exibeRegras :-
     shell(clear),
@@ -28,8 +33,11 @@ exibeRegras :-
     write('->Marca 1 ponto quem tiver maior atributo'),nl,
     write('->Cartas especiais concederá o dobro de pontos para o vencedor do turno.'),nl,
     write('->As duas cartas que batalharam são removidas do jogo'),nl,
-    write('->Quando acabarem as cartas quem tiver mais ponto vence o jogo.'),
+    write('->Quando acabarem as cartas quem tiver mais ponto vence o jogo.'),nl,
     menu.
 
 exibeNaTela([]).
-exibeNaTela([H|T]):- write(H),nl, exibeNaTela(T).
+
+exibeNaTela([H|T]):- 
+    write(H),nl, 
+    exibeNaTela(T).
