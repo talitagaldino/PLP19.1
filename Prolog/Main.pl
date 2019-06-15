@@ -34,12 +34,12 @@ selecionaOpcao(4) :- halt(0).
 iniciaJogo(_,[],_,_,Rodada) :- 
     number_string(Rodada,RodadaString),
     string_concat('FIM DE JOGO. PLAYER 1 VENCEU. TOTAL DE TURNOS: ',RodadaString,JogadorVenceu),
-    write(JogadorVenceu),nl.
+    write(JogadorVenceu),nl,halt(0).
 
 iniciaJogo([],_,_,_,Rodada) :- 
       number_string(Rodada,RodadaString),
       string_concat('FIM DE JOGO. MÁQUINA VENCEU! TOTAL DE TURNOS: ',RodadaString,MaquinaVenceu),
-      write(MaquinaVenceu),nl.
+      write(MaquinaVenceu),nl, halt(0).
 
 iniciaJogo(Pilha1,Pilha2,PlayerAtual,Acumulador,Rodada) :-
     length(Pilha1,Size1),
@@ -179,21 +179,21 @@ escolheAtributoMaquina(Carta,Acumulador,Atributo) :-
        mediaVel(Acumulador,Media_Vel),
        mediaHab(Acumulador,Media_Hab),
 
-       diferencaVit is Vitalidade - Media_Vit,
-       diferencaInt is Inteligencia - Media_Int,
-       diferencaFor is Forca - Media_For,
-       diferencaVel is Velocidade - Media_Vel,
-       diferencaHab is Habilidade - Media_Hab,
+       DiferencaVit is Vitalidade - Media_Vit,
+       DiferencaInt is Inteligencia - Media_Int,
+       DiferencaFor is Forca - Media_For,
+       DiferencaVel is Velocidade - Media_Vel,
+       DiferencaHab is Habilidade - Media_Hab,
 
-      escolheAtributoMaquinaAux(diferencaVit,diferencaInt,diferencaFor,diferencaVel,diferencaHab,Atributo).
+      escolheAtributoMaquinaAux(DiferencaVit,DiferencaInt,DiferencaFor,DiferencaVel,DiferencaHab,Atributo).
 
 
-escolheAtributoMaquinaAux(diferencaVit,diferencaInt,diferencaFor,diferencaVel,diferencaHab,Atributo) :-
-    List = [diferencaVit,diferencaInt,diferencaFor,diferencaVel,diferencaHab],
+escolheAtributoMaquinaAux(DiferencaVit,DiferencaInt,DiferencaFor,DiferencaVel,DiferencaHab,Atributo) :-
+    List = [DiferencaVit,DiferencaInt,DiferencaFor,DiferencaVel,DiferencaHab],
     max_list(List, Max),
-    (diferencaVit >= Max -> Atributo = 'VITALIDADE'
-    ;diferencaInt >= Max -> Atributo = 'INTELIGENCIA'
-    ;diferencaFor >= Max -> Atributo = 'FORCA'
-    ;diferencaVel >= Max -> Atributo = 'VELOCIDADE'
+    (DiferencaVit >= Max -> Atributo = 'VITALIDADE'
+    ;DiferencaInt >= Max -> Atributo = 'INTELIGENCIA'
+    ;DiferencaFor >= Max -> Atributo = 'FORCA'
+    ;DiferencaVel >= Max -> Atributo = 'VELOCIDADE'
     ; Atributo = 'HABILIDADE').
 
