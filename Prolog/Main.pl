@@ -77,7 +77,7 @@ iniciaJogo(Pilha1,Pilha2,PlayerAtual,Acumulador,Rodada) :-
 
     sleep(2),
 
-    vencedor(PlayerAtual,Comp,PlayerVencedor,0),
+    vencedor(PlayerAtual,Comp,PlayerVencedor),
     trocaCartas(PlayerVencedor,Pilha1,Pilha2,Pilha1Nova,Pilha2Nova),
 
     sleep(2),
@@ -155,7 +155,7 @@ criaJogo(Pilha1,Pilha2,PlayerIniciaJogo,Acumulador) :-
     random_permutation(Cartas, CartasEmbaralhadas),
     iniciaPilha(CartasEmbaralhadas,Pilha1,Pilha2),
     criaAcumulador(1,0,0,0,0,0,Acumulador),
-    PlayerIniciaJogo is 1,
+    random(1, 3, PlayerIniciaJogo),
     string_concat('PLAYER ', PlayerIniciaJogo, PlayerInicia1),
     string_concat(PlayerInicia1,' INICIA O JOGO', PlayerInicia),
     write(PlayerInicia), nl,

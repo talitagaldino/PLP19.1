@@ -1,5 +1,3 @@
-
-//METODO PARA COLOCAR OS ATRIBUTOS NA CARTA//
 constroiCarta(Nome,Vitalidade,Inteligencia,Forca,Velocidade,Habilidade,EhEspecial,carta(Nome,Vitalidade,Inteligencia,Forca,Velocidade,Habilidade,EhEspecial)).
 
 getNome(carta(Nome,_,_,_,_,_,_),Nome).
@@ -10,23 +8,6 @@ getVelocidade(carta(_,_,_,_,Velocidade,_,_),Velocidade).
 getHabilidade(carta(_,_,_,_,_,Habilidade,_),Habilidade).
 getEspecial(carta(_,_,_,_,_,_,EhEspecial),EhEspecial).
 
-//METODOS PARA ACESSAR AOS ATRIBUTOS DA CARTA//
-//METODO QUE ACESSA O NOME DA CARTA, TA PRONTO.//
-//PRECISA APENAS IMPLEMENTAR PARA ACESSAR OS OUTROS ATRIBUTOS.//
-getNome(carta(Nome,_,_,_,_,_,_),Nome).
-
-getVitalidade
-getInteligencia
-getForca
-getVelocidade
-getHabilidade
-getEspecial
-
-//PARA SABER SE A CARTA EH ESPECIAL OU NAO//
-ehEspecial(carta(_,_,_,_,_,_,True))
-
-//TO STRING DA CARTA, REPRESENTACAO EM STRING DA CLASSE CARTA//
-//PRECISA IMPLEMENTAR//
 descricaoCarta(Carta) :-
     write('') ,nl,
     getNome(Carta,Nome_),
@@ -50,9 +31,10 @@ descricaoCarta(Carta) :-
     write(Velocidade),nl,
     write(Habilidade),nl,
     Especial -> write('CARTA ESPECIAL') ; write('').
-   
-//PARA SABER SE DUAS STRINGS SAO IGUAIS, JA TA PRONTO//
-stringIgual(StringA,StringB,Equal) :-
+
+ehEspecial(carta(_,_,_,_,_,_,1)).
+
+string_equals(StringA,StringB,Equal) :-
     string_to_atom(StringA, Atom),
     string_to_atom(StringB, Atom2),
     ((Atom == Atom2) -> Equal = 1; Equal = 0).
@@ -124,7 +106,6 @@ mediaHab(Acumulador,Media) :-
 desempata(StringA,StringB,Comparator) :-
     (StringA @< StringB) -> Comparator = 1 ; Comparator = -1.
 
-//PARA COMPARAR OS ATRIBUTOS DAS CARTAS, PRECISA IMPLEMENTAR.//
 comparaCarta(Carta1,Carta2,Atributo,Comparador) :-
     string_equals(Atributo,'VITALIDADE',Vitalidade_eq),
     string_equals(Atributo,'INTELIGENCIA',Inteligencia_eq),
@@ -161,19 +142,15 @@ comparaCarta(Carta1,Carta2,Atributo,Comparador) :-
     getEspecial(Carta2,Especial2),
     desempata(Especial1,Especial2,Desempate),
 
-    (Vitalidade_eq == 1 ->
-
-//PRECISA USAR UM METODO AUXILIAR PARA IMPLEMENTAR O COMPARA CARTA ANTERIOR//    
-comparaCartaAuxiliar(Vitalidade1,Vitalidade2,Desempate,Comparador);
+    (Vitalidade_eq == 1 -> comparaCartaAuxiliar(Vitalidade1,Vitalidade2,Desempate,Comparador);
      Inteligencia_eq == 1 -> comparaCartaAuxiliar(Inteligencia1,Inteligencia2,Desempate,Comparador);
-     (Forca_eq == 1) -> comparaCartaAuxiliar(Forca1,Forca2,Desempate,Comparador);
-     (Velocidade_eq == 1) -> comparaCartaAuxiliar(Velocidade1,Velocidade2,Desempate,Comparador);
-     (Habilidade_eq == 1) -> comparaCartaAuxiliar(Habilidade1,Habilidade2,Desempate,Comparador)).
+     Forca_eq == 1 -> comparaCartaAuxiliar(Forca1,Forca2,Desempate,Comparador);
+     Velocidade_eq == 1 -> comparaCartaAuxiliar(Velocidade1,Velocidade2,Desempate,Comparador);
+     Habilidade_eq == 1 -> comparaCartaAuxiliar(Habilidade1,Habilidade2,Desempate,Comparador)).
     
 comparaCartaAuxiliar(Atributo1,Atributo2,Desempata,Comparador) :-
     Subtracao is Atributo1 - Atributo2,
    (Subtracao \= 0 -> Comparador is Subtracao ; Comparador is Desempata).
-    
 
 
 
