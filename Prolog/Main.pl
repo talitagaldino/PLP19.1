@@ -68,7 +68,8 @@ iniciaJogo(Pilha1,Pilha2,PlayerAtual,Acumulador,Rodada) :-
     sleep(2),
 
     checaEspecial(PlayerAtual,Carta1,Carta2,Eh_Especial,Comparador),
-    (Eh_Especial == 1 -> Comp = Comparador ; escolheAtributo(PlayerAtual,Atributo,Carta2,Acumulador), comparadorAux(PlayerAtual,Carta1,Carta2,Atributo,Comp)),nl,
+    (Eh_Especial == 1 -> Comp = Comparador ; escolheAtributo(PlayerAtual,Atributo,Carta2,Acumulador),
+     comparadorAux(PlayerAtual,Carta1,Carta2,Atributo,Comp)),nl,
 
     sleep(2),
 

@@ -34,6 +34,9 @@ descricaoCarta(Carta) :-
 
 ehEspecial(carta(_,_,_,_,_,_,1)).
 
+ehEspecial(Carta,Is) :-
+    getEspecial(Carta) -> Is = 1; Is = 0.
+
 string_equals(StringA,StringB,Equal) :-
     string_to_atom(StringA, Atom),
     string_to_atom(StringB, Atom2),

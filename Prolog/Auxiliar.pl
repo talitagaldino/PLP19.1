@@ -3,7 +3,7 @@
 iniciaCarta(Carta) :-
     open('arquivo.txt', read, Str),
     read_file(Str,Cartas),
-    random(1,30,Index_Trunfo),
+    random(0,32,Index_Trunfo),
     map(Index_Trunfo,mapeiaCartas,Cartas,Carta),
     close(Str).
 
@@ -47,8 +47,8 @@ mapeiaCartas(PosicaoSuper,ListaString,Carta) :-
         nth0(3, List, Forca),
         nth0(4, List, Velocidade),
         nth0(5, List, Habilidade),
-        nth0(6, List, Super),
-        number_string(IndexNumber,Super),
+        nth0(6, List, Index),
+        number_string(IndexNumber,Index),
         ehSuper(IndexNumber,PosicaoSuper,Especial),
         constroiCarta(Nome,Vitalidade,Inteligencia,Forca,Velocidade,Habilidade,Especial,Carta).
 
