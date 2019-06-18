@@ -34,8 +34,6 @@ descricaoCarta(Carta) :-
 
 ehEspecial(carta(_,_,_,_,_,_,1)).
 
-ehEspecial(Carta,Is) :-
-    getEspecial(Carta) -> Is = 1; Is = 0.
 
 string_equals(StringA,StringB,Equal) :-
     string_to_atom(StringA, Atom),
@@ -154,7 +152,6 @@ comparaCarta(Carta1,Carta2,Atributo,Comparador) :-
 comparaCartaAuxiliar(Atributo1,Atributo2,Desempata,Comparador) :-
     Subtracao is Atributo1 - Atributo2,
    (Subtracao \= 0 -> Comparador is Subtracao ; Comparador is Desempata).
-
 
 
 

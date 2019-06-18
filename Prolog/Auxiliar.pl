@@ -1,18 +1,22 @@
 :- include('Carta.pl').
 
-iniciaCarta(Carta) :-
-    open('arquivo.txt', read, Str),
+iniciaCartaHerois(Carta) :-
+    open('herois.txt', read, Str),
     read_file(Str,Cartas),
-    random(0,32,Index_Trunfo),
+    random(0,16,Index_Trunfo),
     map(Index_Trunfo,mapeiaCartas,Cartas,Carta),
     close(Str).
 
-iniciaPilha([H|T],Pilha1,Pilha2) :-
-    reverse([H|T], Lista_Invertida),
+iniciaCartaViloes(Carta) :-
+    open('viloes.txt', read, Str),
+    read_file(Str,Cartas),
+    random(0,16,Index_Trunfo),
+    map(Index_Trunfo,mapeiaCartas,Cartas,Carta),
+    close(Str).
+
+iniciaPilha([H|T],Pilha1) :-
     takeLista([H|T],Lista1),
-    takeLista(Lista_Invertida,Lista2),
-    stack(Lista1,Pilha1),
-    stack(Lista2,Pilha2).
+    stack(Lista1,Pilha1).
    
 takeLista([H|T],[[NH|NT]]) :-
     takeListaAux(0,[H|T],[NH|NT]).

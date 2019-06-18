@@ -1,0 +1,16 @@
+Homem_Aranha,31,71,45,38,82,1
+Homem_de_Ferro,48,71,54,52,49,2
+Thor,71,18,83,38,68,3
+Capitão_América,48,38,89,21,45,4
+Viúva_Negra,58,41,78,27,42,5
+Wolverine,61,25,83,28,19,6
+Máquina_de_Combate,62,32,61,55,65,7
+Homem_Formiga,35,48,37,40,68,8
+Capitã_Marvel,87,28,44,48,62,9
+Dr.Estranho,18,86,12,33,81,10
+Pantera_Negra,42,40,74,65,21,11
+Hulk,78,3,90,20,14,12
+Ciclope,29,42,39,24,73,13
+Mulher_Invisível,72,38,21,34,65,14
+Mulher_Maravilha,58,30,76,51,48,15
+Anjo,32,16,42,78,66,16

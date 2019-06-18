@@ -116,7 +116,7 @@ checaEspecial(2,Carta1,Carta2,Is,Comparador) :-
     (ehEspecial(Carta2) -> Is = 1, checaEspecialAux(Carta1,Comparador) ; Is = 0).
 
 checaEspecialAux(Carta2,Comparador) :-
-    ehEspecial(Carta2,Is), (Is == 1 -> Comparador = -1 ; Comparador = 1).
+    getEspecial(Carta2,Is), (Is == 1 -> Comparador = -1 ; Comparador = 1).
 
 escolheAtributo(1,Atributo,_,_) :- escolheAtributoJogador(Atributo).
 
@@ -152,9 +152,12 @@ mostraCartaAux(2,_,Carta2) :- descricaoCarta(Carta2).
 
 criaJogo(Pilha1,Pilha2,PlayerIniciaJogo,Acumulador) :-
     imprimeLinha(2),
-    iniciaCarta(Cartas),
-    random_permutation(Cartas, CartasEmbaralhadas),
-    iniciaPilha(CartasEmbaralhadas,Pilha1,Pilha2),
+    iniciaCartaHerois(CartasHerois),
+    iniciaCartaViloes(CartasViloes),
+    random_permutation(CartasHerois, CartasHeroisEmbaralhadas),
+    random_permutation(CartasViloes, CartasViloesEmbaralhadas),
+    iniciaPilha(CartasHeroisEmbaralhadas,Pilha1),
+    iniciaPilha(CartasViloesEmbaralhadas,Pilha2),
     criaAcumulador(1,0,0,0,0,0,Acumulador),
     random(1, 3, PlayerIniciaJogo),
     string_concat('PLAYER ', PlayerIniciaJogo, PlayerInicia1),
@@ -197,4 +200,3 @@ escolheAtributoMaquinaAux(DiferencaVit,DiferencaInt,DiferencaFor,DiferencaVel,Di
     ;DiferencaFor >= Max -> Atributo = 'FORCA'
     ;DiferencaVel >= Max -> Atributo = 'VELOCIDADE'
     ; Atributo = 'HABILIDADE').
-
